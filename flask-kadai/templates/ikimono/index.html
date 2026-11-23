@@ -1,0 +1,43 @@
+<!--  入口
+ _______________________________________________________________________________________ -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>育てて図鑑</h1>
+
+<!-- もし育成中がいたら -->
+
+{% if active_ikimono %}
+        <p>おかえりなさい！たねちゃんが君のことを待ってるよ。</p>
+    {% if active_ikimono.stage == 'egg' %}
+        <a href="{{ url_for('ikimono.egg') }}">卵のお部屋へ</a>
+
+    {% elif active_ikimono.stage == 'baby' %}
+        <a href="{{ url_for('ikimono.baby') }}">幼体のお部屋へ</a>
+
+    {% elif active_ikimono.stage == 'adult' %}
+        <a href="{{ url_for('ikimono.kekka') }}">成体の結果を見る</a>
+    {% endif %}
+
+<!-- いなかったら -->
+{% else %}
+
+    <p>新しい生き物を育ててみましょう！</p>
+
+    <form action="{{ url_for('ikimono.start') }}" method="POST">
+        <button type="submit">育成を開始する</button>
+    </form>
+
+{% endif %}
+
+<hr>
+
+<h2>図鑑</h2>
+
+<a href="{{ url_for('ikimono.zukan') }}">
+    図鑑を見る
+</a>
+
+{% endblock %}

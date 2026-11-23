@@ -1,0 +1,124 @@
+<!-- 種別の図鑑ページ -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="species-page">
+
+    <!-- 種族のタイトル -->
+    <div class="room-heading">
+        <h1>{{ species_name }}</h1>
+    </div>
+
+    <hr class="room-divider">
+
+    {% if ikimonos %}
+
+        <div class="species-intro">
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='images/ikimonos/' ~ ikimonos[0].species ~ '.png'
+                ) }}"
+                alt="{{ species_name }}"
+            >
+            <!-- [0]でikimonos の中にある最初の生き物の種類を取得する -->
+
+            <p>この種類の記録</p>
+        </div>
+
+        <!-- 個体カード一覧 -->
+        <div class="creature-grid">
+
+            {% for ikimono in ikimonos %}
+
+                <div class="creature-card">
+
+                    <!-- 生き物の画像 -->
+                    <div class="creature-card-image">
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/ikimonos/' ~ ikimono.species ~ '.png'
+                            ) }}"
+                            alt="{{ species_name }}"
+                        >
+                    </div>
+
+                    <div class="creature-card-info">
+
+                        <h2>
+                            <a href="{{ url_for(
+                                'ikimono.kobetu',
+                                ikimono_id=ikimono.id
+                            ) }}">
+                                {{ ikimono.name }}
+                            </a>
+                        </h2>
+
+                        <!-- 代表の表示 -->
+                        {% if ikimono.is_representative %}
+
+                            <div class="representative-label">
+                                🌟 この子が代表！
+                            </div>
+
+                        {% else %}
+
+                            <form action="{{ url_for(
+                                'ikimono.set_representative',
+                                species=ikimono.species,
+                                ikimono_id=ikimono.id
+                            ) }}" method="POST">
+
+                                <button type="submit"
+                                        class="representative-button">
+                                    この子を代表にする
+                                </button>
+
+                            </form>
+
+                        {% endif %}
+
+                        <!-- 生態メモ -->
+                        <div class="creature-memo">
+                            <p>{{ ikimono.ecology }}</p>
+                        </div>
+
+                        <a class="creature-detail-link"
+                           href="{{ url_for(
+                               'ikimono.kobetu',
+                               ikimono_id=ikimono.id
+                           ) }}">
+                            この子の詳細を見る →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="zukan-empty">
+            <div class="empty-icon">🌱</div>
+            <h2>まだ仲間はいません</h2>
+            <p>これからどんな子たちと出会えるでしょう？</p>
+        </div>
+
+    {% endif %}
+
+    <!-- 図鑑に戻る -->
+    <div class="back-to-zukan">
+        <a href="{{ url_for('ikimono.zukan') }}">
+            ← 図鑑に戻る
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

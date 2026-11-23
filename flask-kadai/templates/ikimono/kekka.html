@@ -1,0 +1,91 @@
+<!--  成体
+ _______________________________________________________________________________________ -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="result-room">
+
+    <!-- お祝いの見出し -->
+    <div class="room-heading">
+        <h1>おめでとう！</h1>
+        <p>大切に育てた子が、ついに成体になったど。</p>
+    </div>
+
+    <hr class="room-divider">
+
+    <!-- 成体のお披露目 -->
+    <div class="adult-display">
+
+        <!-- ikimono.species(種類を表すデータ変数) の特性ごとに画像が変わるように -->
+        <img
+        src="{{ url_for(
+            'static',
+            filename='images/ikimonos/' ~ ikimono.species ~ '.png'
+            ) }}"
+        alt="{{ species_name }}">
+        <!-- src="画像の場所" alt="画像の説明" -->
+         <!-- staticフォルダの中にある、images/ikimonos/(属性).png という画像のURLを作る！ -->
+          <!-- ~ は、Jinja2で使われる文字列をつなげるための記号 -->
+
+
+        <h2>{{ species_name }}</h2>
+
+        <p>これからも大切にしてあげましぅ！！！</p>
+
+        <span class="adult-stage">おとなになりました！</span>
+
+    </div>
+
+    <hr class="room-divider">
+
+    <!-- 名前と生態メモの登録 -->
+    <div class="registration-section">
+
+        <div class="registration-heading">
+            <h2>この子のことを教えてね</h2>
+            <p>名前をつけて、どんな子なのか記録してあげましょう。</p>
+        </div>
+
+        <form action="{{ url_for('ikimono.register') }}" method="POST"
+              class="creature-form">
+
+            <div class="form-group">
+                <label for="name">名前</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    maxlength="50"
+                    placeholder="この子の名前"
+                    required
+                >
+                <small>いいかんじの名前をつけてあげてね。</small>
+            </div>
+
+            <div class="form-group">
+                <label for="ecology">生態メモ</label>
+                <textarea
+                    id="ecology"
+                    name="ecology"
+                    rows="5"
+                    placeholder="好きなこと、性格、暮らし方などを書いてみ"
+                    required
+                >{{ ikimono.ecology or '' }}</textarea>
+                <small>あとから図鑑で読み返すことができます。</small>
+            </div>
+
+            <div class="registration-submit">
+                <button type="submit" class="register-button">
+                    図鑑に登録する
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

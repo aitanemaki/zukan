@@ -1,0 +1,1161 @@
+/* メモ：ナチュラルっぽく */
+
+/* ---------------------------------- */
+/* 色設定 */
+/* ---------------------------------- */
+
+:root {
+    --color-back: #eeeadd;
+    --color-siro: #faf7ed;
+    --color-green: #a8b59a;
+    --color-green-dark: #78896c;
+    --color-tya: #a58b6c;
+    --color-text: #5d5a4f;
+    --color-waku: #c9bea7;
+}
+/* var() で呼び出し */
+
+/* ---------------------------------- */
+/* 全体 */
+/* ---------------------------------- */
+
+
+body {
+    background-color: var(--color-back);
+    color: var(--color-text);
+
+    font-family:
+        "Yu Gothic",
+        "Hiragino Kaku Gothic ProN",
+        sans-serif;
+
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+/* ---------------------------------- */
+/* ヘッダー */
+/* ---------------------------------- */
+
+
+.game-navbar {
+    background-color: var(--color-green-dark);
+    border-bottom: 4px solid #64765b;
+    padding: 12px 0;
+}
+
+.game-logo {
+    color: #fffaf0 !important;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.game-nav-link {
+    color: #f8f4e9 !important;
+    margin-left: 12px;
+    transition: 0.2s;
+}
+
+.game-nav-link:hover {
+    color: #f2d9a6 !important;
+    transform: translateY(-2px);
+}
+
+
+/* ---------------------------------- */
+/* 見出し */
+/* ---------------------------------- */
+
+.page-container {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.game-screen {
+    background-color: var(--color-siro);
+
+    border: 3px solid var(--color-waku);
+    border-radius: 8px;
+
+    padding: 35px;
+
+    min-height: 400px;
+
+    box-shadow:
+        5px 5px 0 rgba(120, 105, 80, 0.12);
+}
+
+/* ---------------------------------- */
+/* ボタン */
+/* ---------------------------------- */
+
+h1, h2, h3, h4 {
+    color: var(--color-green-dark);
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+
+/* ---------------------------------- */
+/* ボタン */
+/* ---------------------------------- */
+
+button,
+.btn {
+    background-color: var(--color-green);
+    color: #fffdf5;
+
+    border: 2px solid var(--color-green-dark);
+    border-radius: 5px;
+
+    padding: 8px 18px;
+
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover,
+.btn:hover {
+    background-color: var(--color-green-dark);
+    color: #fffdf5;
+    transform: translateY(-2px);
+}
+
+
+/* ---------------------------------- */
+/* リンク */
+/* ---------------------------------- */
+
+a {
+    color: var(--color-green-dark);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-tya);
+    text-decoration: underline;
+}
+
+
+/* ---------------------------------- */
+/* 入力欄 */
+/* ---------------------------------- */
+
+input,
+textarea,
+select {
+    border: 2px solid var(--color-waku) !important;
+    border-radius: 5px !important;
+    background-color: #fffdf8 !important;
+    color: var(--color-text) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-green) !important;
+    box-shadow: 0 0 0 3px rgba(168, 181, 154, 0.2) !important;
+}
+
+
+/* ---------------------------------- */
+/* スマホ */
+/* ---------------------------------- */
+
+@media (max-width: 768px) {
+    .page-container {
+        padding-top: 20px;
+    }
+
+    .game-screen {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   たまごのおへや
+======================================== */
+
+.egg-room {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* タイトル */
+
+.room-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.room-subtitle {
+    color: var(--color-brown);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+/* 区切り線 */
+
+.room-divider {
+    border: none;
+    border-top: 2px dashed var(--color-border);
+    opacity: 1;
+    margin: 30px 0;
+}
+
+/* ---------------------------------- */
+/* たまごの表示 */
+
+.egg-display {
+    text-align: center;
+    background-color: #f1efe2;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 30px 15px;
+}
+
+/* ーーーー */
+/* 卵のアイコンの大きさを160pxに整えてゆっくり上下に動かす */
+.egg-icon {
+    margin-bottom: 10px;
+    animation: egg-bounce 3s ease-in-out infinite;
+}
+
+.egg-icon img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+}
+/* ーーーー */
+
+/* 文字 */
+.egg-stage {
+    display: inline-block; /* 文の長さに合わせて横幅が自動調整、上下余白も正しく適用*/
+    background-color: #e0e5d6; /* 背景 */
+    color: var(--color-green-dark); /* 文字色 */
+    border-radius: 4px; /* 四隅を4pxだけ丸く */
+    padding: 5px 15px; /* 上下に5px、左右に15pxの余白 */
+    font-size: 0.9rem; /* 基本の文字サイズより少し小さめ */
+}
+
+
+/* ---------------------------------- */
+
+/* お世話の進み具合 */
+
+.care-progress {
+    margin-top: 30px;
+}
+
+.care-progress > p {
+    font-weight: bold;
+    color: var(--color-green-dark);
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.progress-track {
+    height: 15px;
+    background-color: #e5e0d2;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--color-green);
+    transition: width 0.3s;
+}
+
+/* お世話ボタン */
+
+.care-section {
+    text-align: center;
+}
+
+.care-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.care-actions form {
+    margin: 0;
+}
+
+.care-button {
+    width: 100%;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    background-color: #f5f1e5;
+    color: var(--color-text);
+
+    border: 2px solid var(--color-border);
+    border-radius: 7px;
+    padding: 15px 8px;
+}
+
+.care-button:hover {
+    background-color: #e8eddf;
+    color: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+}
+
+.care-icon {
+    font-size: 1.8rem;
+}
+
+.care-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.care-description {
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+
+/* スマ帆 */
+
+@media (max-width: 576px) {
+    .care-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .egg-icon {
+        font-size: 4rem;
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   幼体のおへや(ほぼ卵のほうを汎用、省略)
+======================================== */
+
+.baby-room {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* 幼体の表示 */
+
+.baby-display {
+    text-align: center;
+    background-color: #f1efe2;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 30px 15px;
+}
+
+/* アイコンのサイズ調整とか */
+
+.baby-icon {
+    margin-bottom: 10px;
+    animation: baby-bounce 3s ease-in-out infinite;
+}
+
+.baby-icon img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+.baby-stage {
+    display: inline-block;
+    background-color: #e0e5d6;
+    color: var(--color-green-dark);
+    border-radius: 4px;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* 幼体のゆったりした動き */
+
+@keyframes baby-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   成体のお披露目・登録画面
+======================================== */
+
+.result-room {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* 成体のお披露目 */
+
+.adult-display {
+    text-align: center;
+    background-color: #f1efe2;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 30px 15px;
+}
+
+.adult-display-label {
+    color: var(--color-brown);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+}
+
+.adult-placeholder {
+    width: 180px;
+    height: 180px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #e8e8d9;
+    border: 2px dashed var(--color-green);
+    border-radius: 8px;
+
+    font-size: 5rem;
+}
+
+.adult-stage {
+    display: inline-block;
+    background-color: #e0e5d6;
+    color: var(--color-green-dark);
+    border-radius: 4px;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* 登録フォーム */
+
+.registration-section {
+    margin-top: 30px;
+}
+
+.registration-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.creature-form {
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.creature-form .form-group {
+    margin-bottom: 22px;
+}
+
+.creature-form label {
+    display: block;
+    color: var(--color-green-dark);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.creature-form input,
+.creature-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+}
+
+.creature-form textarea {
+    resize: vertical;
+}
+
+.creature-form small {
+    display: block;
+    color: #918675;
+    margin-top: 6px;
+    font-size: 0.8rem;
+}
+
+.registration-submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register-button {
+    min-width: 200px;
+    padding: 12px 25px;
+    letter-spacing: 1px;
+}
+
+/* スマートフォン */
+
+@media (max-width: 576px) {
+    .adult-placeholder {
+        width: 145px;
+        height: 145px;
+        font-size: 4rem;
+    }
+
+    .register-button {
+        width: 100%;
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   図鑑
+======================================== */
+
+.zukan-page {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* 図鑑の紹介 */
+
+.zukan-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0;
+    color: var(--color-green-dark);
+    font-weight: bold;
+}
+
+.zukan-intro span {
+    font-size: 1.5rem;
+}
+
+.zukan-intro p {
+    margin: 0;
+}
+
+/* 種族カードの並び */
+
+.species-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* 種族カード */
+
+.species-card {
+    display: block;
+    overflow: hidden;
+
+    background-color: #f5f1e5;
+    border: 2px solid var(--color-border);
+    border-radius: 7px;
+
+    color: var(--color-text);
+    text-decoration: none;
+
+    box-shadow: 3px 3px 0 rgba(120, 105, 80, 0.10);
+    transition: 0.2s;
+}
+
+.species-card:hover {
+    color: var(--color-text);
+    text-decoration: none;
+    border-color: var(--color-green-dark);
+    transform: translateY(-4px);
+    box-shadow: 5px 6px 0 rgba(120, 105, 80, 0.13);
+}
+
+/* カードの画像部分 */
+
+.species-card-image {
+    min-height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #e8e8d9;
+    border-bottom: 2px dashed var(--color-border);
+}
+
+.species-card-image span {
+    font-size: 4rem;
+}
+
+/* カードの文字部分 */
+
+.species-card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.species-card-info h2 {
+    margin: 5px 0;
+    font-size: 1.15rem;
+}
+
+.species-subname {
+    color: var(--color-brown);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.species-count {
+    display: inline-block;
+    background-color: #e5e8db;
+    color: var(--color-green-dark);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin: 5px 0 12px;
+}
+
+.species-card-link {
+    display: block;
+    color: var(--color-green-dark);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* 図鑑が空の場合 */
+
+.zukan-empty {
+    text-align: center;
+    background-color: #f1efe2;
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+    padding: 40px 15px;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.zukan-empty p {
+    margin-bottom: 8px;
+}
+
+/* スマートフォン */
+
+@media (max-width: 576px) {
+    .species-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .species-card-image {
+        min-height: 120px;
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   種族ごとの一覧
+======================================== */
+
+.species-page {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* 紹介文 */
+
+.species-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0;
+    color: var(--color-green-dark);
+    font-weight: bold;
+}
+
+.species-intro img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.species-intro p {
+    margin: 0;
+}
+
+/* 個体カードの並び */
+
+.creature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* 個体カード */
+
+.creature-card {
+    overflow: hidden;
+    background-color: #f5f1e5;
+    border: 2px solid var(--color-border);
+    border-radius: 7px;
+    box-shadow: 3px 3px 0 rgba(120, 105, 80, 0.10);
+}
+
+/* 個体画像の場所 */
+
+.creature-card-image {
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e8e8d9;
+    border-bottom: 2px dashed var(--color-border);
+}
+
+.creature-card-image span {
+    font-size: 3.5rem;
+}
+
+/* カード内の情報 */
+
+.creature-card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.creature-card-info h2 {
+    font-size: 1.15rem;
+    margin: 5px 0 15px;
+}
+
+.creature-card-info h2 a {
+    color: var(--color-green-dark);
+}
+
+.creature-card-info h2 a:hover {
+    color: var(--color-brown);
+}
+
+/* 代表の子の表示 */
+
+.representative-label {
+    display: inline-block;
+    background-color: #e6e8d8;
+    color: var(--color-green-dark);
+    border: 1px solid var(--color-green);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* 代表にするボタン */
+
+.representative-button {
+    font-size: 0.85rem;
+    padding: 7px 12px;
+}
+
+/* 生態メモ */
+
+.creature-memo {
+    background-color: #faf7ed;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.creature-memo p {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* 詳細ページへのリンク */
+
+.creature-detail-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* 図鑑に戻る */
+
+.back-to-zukan {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.back-to-zukan a {
+    display: inline-block;
+    background-color: #e8e8d9;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+/* スマホ */
+
+@media (max-width: 576px) {
+    .creature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------------------------- */
+
+/* ========================================
+   個別カード
+======================================== */
+
+.individual-page {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* ページ見出し */
+
+.individual-species {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 14px;
+    background-color: #e8e8d9;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    color: var(--color-green-dark);
+    font-size: 0.9rem;
+}
+
+/* 個体カード */
+
+.individual-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 30px 0;
+    padding: 25px;
+    background-color: #f5f1e5;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(120, 105, 80, 0.1);
+}
+
+.individual-image {
+    flex: 0 0 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e8e8d9;
+    border: 2px dashed var(--color-border);
+    border-radius: 6px;
+}
+
+.individual-image span {
+    font-size: 5rem;
+}
+
+.individual-info {
+    flex: 1;
+    text-align: left;
+}
+
+.individual-label {
+    margin-bottom: 8px;
+    color: var(--color-green);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.individual-info h2 {
+    margin: 0 0 8px;
+    color: var(--color-green-dark);
+    font-size: 1.6rem;
+}
+
+.individual-type {
+    color: var(--color-brown);
+    margin-bottom: 15px;
+}
+
+/* 生態メモ */
+
+.individual-memo-section {
+    margin-top: 35px;
+}
+
+.individual-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--color-green-dark);
+}
+
+.individual-section-heading span {
+    font-size: 1.5rem;
+}
+
+.individual-section-heading h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.individual-memo {
+    min-height: 130px;
+    padding: 20px;
+    background-color: #faf7ed;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 rgba(120, 105, 80, 0.08);
+}
+
+.individual-memo p {
+    margin: 0;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* ページ下部のリンク */
+
+.individual-navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 35px 0;
+}
+
+.individual-back-button {
+    display: inline-block;
+    padding: 11px 22px;
+    background-color: #e8e8d9;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    color: var(--color-green-dark);
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 2px 2px 0 rgba(120, 105, 80, 0.1);
+}
+
+.individual-back-button:hover {
+    background-color: #dfe3d2;
+    color: var(--color-brown);
+}
+
+.individual-zukan-link {
+    color: var(--color-brown);
+    font-size: 0.9rem;
+}
+
+/* スマホ対応 */
+
+@media (max-width: 576px) {
+
+    .individual-card {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px;
+    }
+
+    .individual-image {
+        width: 100%;
+        flex-basis: auto;
+        height: 160px;
+    }
+
+    .individual-info {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+
+/* ========================================
+   個体情報の編集！
+======================================== */
+
+.individual-edit {
+    margin-top: 30px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: #f5f1e5;
+    overflow: hidden;
+}
+
+/* 編集ボタン */
+
+.individual-edit-button {
+    padding: 14px 18px;
+    color: var(--color-green-dark);
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+}
+
+.individual-edit-button::-webkit-details-marker {
+    display: none;
+}
+
+.individual-edit-button::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.individual-edit[open] .individual-edit-button::before {
+    content: "▼";
+}
+
+.individual-edit-button:hover {
+    background-color: #e8e8d9;
+}
+
+/* 編集フォームの中身 */
+
+.individual-edit-content {
+    padding: 20px;
+    border-top: 1px dashed var(--color-border);
+}
+
+.individual-edit-content h2 {
+    margin: 0 0 8px;
+    color: var(--color-green-dark);
+    font-size: 1.2rem;
+}
+
+.individual-edit-content > p {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--color-brown);
+}
+
+/* 入力欄 */
+
+.individual-edit-group {
+    margin-bottom: 20px;
+}
+
+.individual-edit-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-green-dark);
+    font-weight: bold;
+}
+
+.individual-edit-group input,
+.individual-edit-group textarea {
+    width: 100%;
+    padding: 11px;
+    background-color: #faf7ed;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    color: var(--color-text);
+    font: inherit;
+}
+
+.individual-edit-group textarea {
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.individual-edit-group input:focus,
+.individual-edit-group textarea:focus {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+}
+
+/* 保存ボタン */
+
+.individual-save-button {
+    display: block;
+    margin: 0 auto;
+    padding: 11px 25px;
+    background-color: var(--color-green);
+    border: 1px solid var(--color-green-dark);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.individual-save-button:hover {
+    background-color: var(--color-green-dark);
+}
+
+
+/* ---------------------------------- */
+/* ======================================== */
+/* 画像を収めるようにサイズの整え */
+.individual-image img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+}
+.adult-display img {
+    width: 220px; /* 横幅 */
+    height: 220px; /* 立幅 */
+    object-fit: contain; /* 縦横比保ち */
+}
+
+.creature-card-image {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.creature-card-image img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+}
+
+/* 図鑑トップの生き物画像 */
+
+.species-card-image img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}

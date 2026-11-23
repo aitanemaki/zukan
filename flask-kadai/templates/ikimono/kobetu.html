@@ -1,0 +1,124 @@
+<!-- 個別カード -->
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="individual-page">
+
+    <!-- ページ見出し -->
+    <div class="room-heading">
+        <h1>{{ ikimono.name }}</h1>
+        <p class="individual-species">{{ species_name }}</p>
+    </div>
+
+    <!-- 生き物の紹介 -->
+    <div class="individual-card">
+
+        <div class="individual-image">
+            <span>🌱</span>
+        </div>
+
+        <div class="individual-info">
+
+            <p class="individual-label">PROFILE</p>
+            <h2>{{ ikimono.name }}</h2>
+            <p class="individual-type">{{ species_name }}</p>
+
+            {% if ikimono.is_representative %}
+                <div class="representative-label">
+                    🌟 この子が図鑑の代表！
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- 生態メモ -->
+    <section class="individual-memo-section">
+
+        <div class="individual-section-heading">
+            <span>✎</span>
+            <h2>生態メモ</h2>
+        </div>
+
+        <div class="individual-memo">
+            {% if ikimono.ecology %}
+                <p>{{ ikimono.ecology }}</p>
+            {% else %}
+                <p>まだ生態メモはありません。</p>
+            {% endif %}
+        </div>
+
+    </section>
+
+    <!-- 編集フォーム -->
+    <details class="individual-edit">
+
+        <summary class="individual-edit-button">
+            ✎ この子の情報を編集する
+        </summary>
+
+        <div class="individual-edit-content">
+
+            <h2>プロフィールの編集</h2>
+            <p>名前や生態メモを変更できます。</p>
+
+            <form action="{{ url_for(
+                'ikimono.edit_kobetu',
+                ikimono_id=ikimono.id
+            ) }}" method="POST">
+
+                <div class="individual-edit-group">
+                    <label for="edit-name">名前</label>
+                    <input
+                        type="text"
+                        id="edit-name"
+                        name="name"
+                        value="{{ ikimono.name }}"
+                        maxlength="50"
+                        required
+                    >
+                </div>
+
+                <div class="individual-edit-group">
+                    <label for="edit-ecology">生態メモ</label>
+                    <textarea
+                        id="edit-ecology"
+                        name="ecology"
+                        rows="6"
+                    >{{ ikimono.ecology or '' }}</textarea>
+                </div>
+
+                <button type="submit" class="individual-save-button">
+                    変更を保存する
+                </button>
+
+            </form>
+
+        </div>
+
+    </details>
+
+    <!-- 戻るリンク -->
+    <div class="individual-navigation">
+
+        <a class="individual-back-button" href="{{ url_for(
+            'ikimono.species_detail',
+            species=ikimono.species
+        ) }}">
+            ← 同じ種類の一覧に戻る
+        </a>
+
+        <a class="individual-zukan-link"
+           href="{{ url_for('ikimono.zukan') }}">
+            図鑑へ戻る
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

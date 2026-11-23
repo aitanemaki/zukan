@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    <title>画像表示テスト</title>
+
+{% block content %}
+    <h1>新しいメモを作成</h1>
+    <form method="post" action="{{ url_for('create') }}">
+        <label for="title">タイトル</label>
+        <input type="text" name="title" id="title" required>
+        <br><br>
+        <label for="content">内容</label>
+        <textarea name="content" id="content" cols="50" rows="5" required></textarea>
+        <br><br>
+        <input type="submit" value="作成">
+    </form>
+
+    <h1>画像を表示</h1>
+    <!-- png を読み込む -->
+    <img src="{{ url_for('static', filename='images/sample.png') }}" alt="サンプル画像">
+
+    <a href="{{ url_for('ikimono') }}">戻る</a>
+{% endblock %}

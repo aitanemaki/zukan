@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="baby-room">
+
+    <!-- お部屋のタイトル -->
+    <div class="room-heading">
+        <h1>ちいさな子のおへや</h1>
+        <p>毎日のお世話で、少しずつ影響を受けて大きくなっていきます。</p>
+    </div>
+
+    <hr class="room-divider">
+
+    <!-- 幼体の様子 -->
+    <div class="baby-display">
+        <div class="baby-icon">
+            <img src="{{ url_for('static', filename='images/ikimonos/baby.png') }}"
+            alt="生まれたばかりのえけち">
+        </div>
+
+        <h2>たまごから生まれました！</h2>
+        <p>これからどんな子に育つのでしょう？</p>
+        <p>大切にお世話してあげましょう。ね！！！</p>
+
+        <span class="baby-stage">成長段階：幼体</span>
+    </div>
+
+    <!-- お世話の進み具合 -->
+    <div class="care-progress">
+        <p>幼体のお世話</p>
+
+        <div class="progress-text">
+            <span>お世話した回数</span>
+            <span>{{ ikimono.baby_care_count }} / 6 回</span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill"
+                 style="width: {{ ikimono.baby_care_count * 100 / 6 }}%">
+            </div>
+        </div>
+    </div>
+
+    <hr class="room-divider">
+
+    <!-- お世話の選択 -->
+    <div class="care-section">
+        <h2>今日のお世話</h2>
+        <p>この子が喜びそうなことを選んであげましょう。</p>
+
+        <div class="care-actions">
+
+            <form action="{{ url_for('ikimono.baby_care') }}" method="POST">
+                <input type="hidden" name="care_type" value="pet">
+                <button type="submit" class="care-button">
+                    <span class="care-icon">🤲</span>
+                    <span class="care-name">なでる</span>
+                </button>
+            </form>
+
+            <form action="{{ url_for('ikimono.baby_care') }}" method="POST">
+                <input type="hidden" name="care_type" value="play">
+                <button type="submit" class="care-button">
+                    <span class="care-icon">🧸</span>
+                    <span class="care-name">遊ぶ</span>
+                </button>
+            </form>
+
+            <form action="{{ url_for('ikimono.baby_care') }}" method="POST">
+                <input type="hidden" name="care_type" value="food">
+                <button type="submit" class="care-button">
+                    <span class="care-icon">🥣</span>
+                    <span class="care-name">ごはんをあげる</span>
+                </button>
+            </form>
+
+            <form action="{{ url_for('ikimono.baby_care') }}" method="POST">
+                <input type="hidden" name="care_type" value="water">
+                <button type="submit" class="care-button">
+                    <span class="care-icon">💧</span>
+                    <span class="care-name">お水をあげる</span>
+                </button>
+            </form>
+
+            <form action="{{ url_for('ikimono.baby_care') }}" method="POST">
+                <input type="hidden" name="care_type" value="rest">
+                <button type="submit" class="care-button">
+                    <span class="care-icon">🌙</span>
+                    <span class="care-name">休ませる</span>
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

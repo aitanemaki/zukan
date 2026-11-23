@@ -1,0 +1,88 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="zukan-page">
+
+    <!-- 図鑑のタイトル -->
+    <div class="room-heading">
+        <h1>そだてて図鑑</h1>
+    </div>
+
+    <hr class="room-divider">
+
+    {% if species_groups %}
+
+        <div class="zukan-intro">
+            <span>📖</span>
+            <p>これまでに育てたこたち</p>
+        </div>
+
+        <!-- 種族ごとのカード -->
+        <div class="species-grid">
+
+            {% for species, ikimonos in species_groups.items() %}
+
+                <a class="species-card"
+                   href="{{ url_for('ikimono.species_detail', species=species) }}">
+
+
+        <!-- 代表の子の表示部分 -->
+        <div class="species-card-image">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/ikimonos/' ~ representatives[species].species ~ '.png'
+                    ) }}"
+                    alt="{{ representatives[species].name }}"
+                >
+
+        </div>
+
+
+
+                    <!-- 種族名・代表名 -->
+                    <div class="species-card-info">
+
+                        {% if representatives[species] %}
+                            <h2>{{ representatives[species].name }}</h2>
+                            <p class="species-subname">
+                                {{ species_names[species] }}
+                            </p>
+                        {% else %}
+                            <h2>{{ species_names[species] }}</h2>
+                        {% endif %}
+
+                        <p class="species-count">
+                            {{ ikimonos|length }}匹 登録されています
+                        </p>
+
+                        <span class="species-card-link">
+                            詳しく見る →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- まだ登録がない場合 -->
+        <div class="zukan-empty">
+            <div class="empty-icon">📖</div>
+            <h2>図鑑はまだ空っぽですことよ</h2>
+            <p>これからどんなこたちと出会えるでしょう？</p>
+            <p>生き物を育てて、図鑑に登録してみましょう！</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
